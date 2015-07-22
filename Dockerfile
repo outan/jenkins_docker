@@ -1,6 +1,7 @@
 FROM java:8u45-jdk
 
-RUN apt-get update && apt-get install -y wget git curl zip && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /var/run/sshd /var/log/supervisor
 
 ENV JENKINS_HOME /var/jenkins_home
 
@@ -21,6 +22,8 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 # Use tini as subreaper in Docker container to adopt zombie processes 
 RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini && chmod +x /bin/tini
 
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
 ENV JENKINS_VERSION 1.609.1
@@ -40,12 +43,16 @@ EXPOSE 8080
 # will be used by attached slave agents:
 EXPOSE 50000
 
+# for sshd
+EXPOSE 22
+
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
 USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+#ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+CMD ["/usr/bin/supervisord"]
 
 # from a derived Dockerfile, can use `RUN plugin.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
