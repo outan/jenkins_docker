@@ -53,7 +53,9 @@ USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 #ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
-CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf 
+#CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf 
+COPY services.sh /etc/services.sh
+ENTRYPOINT /etc/services.sh
 
 # from a derived Dockerfile, can use `RUN plugin.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
