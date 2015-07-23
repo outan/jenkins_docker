@@ -1,6 +1,6 @@
 FROM java:8u45-jdk
 
-RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor gcc libssl-dev && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
