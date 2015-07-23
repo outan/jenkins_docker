@@ -4,6 +4,9 @@ RUN apt-get update && apt-get install -y wget git curl zip openssh-server superv
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
+
+RUN apt-get -y install libxml2
+
 ENV JENKINS_HOME /var/jenkins_home
 
 # Jenkins is ran with user `jenkins`, uid = 1000
@@ -61,3 +64,4 @@ COPY services.sh /var/jenkins_home/services.sh
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY plugins.txt /plugins.txt
 RUN /usr/local/bin/plugins.sh /plugins.txt
+
