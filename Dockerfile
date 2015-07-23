@@ -52,11 +52,10 @@ ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
-#ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 #CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf 
-COPY services.sh $JENKINS_HOME/services.sh
-RUN chmod +x $JENKINS_HOME/services.sh
-ENTRYPOINT {$JENKINS_HOME}/services.sh
+COPY services.sh /var/jenkins_home/services.sh
+#ENTRYPOINT /var/jenkins_home/services.sh
 
 # from a derived Dockerfile, can use `RUN plugin.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
 COPY plugins.sh /usr/local/bin/plugins.sh
