@@ -23,7 +23,7 @@ RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
 
-RUN apt-get -y install libxml2 libxml2-dev libxslt-dev libsqlite3-dev
+RUN apt-get -y install libxml2 libxml2-dev libxslt-dev libsqlite3-dev g++
 RUN apt-get -y install vim
 RUN apt-get -y install tree
 RUN apt-get -y install silversearcher-ag
