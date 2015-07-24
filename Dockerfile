@@ -24,7 +24,10 @@ RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
 
 RUN apt-get -y install libxml2
-
+RUN apt-get -y install vim
+RUN apt-get -y install tree
+RUN apt-get -y install silversearcher-ag
+RUN apt-get -y install unzip
 ENV JENKINS_HOME /var/jenkins_home
 
 # Jenkins is ran with user `jenkins`, uid = 1000
