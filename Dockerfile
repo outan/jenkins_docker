@@ -1,6 +1,24 @@
 FROM java:8u45-jdk
 
-RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor gcc libssl-dev make libreadline-dev && rm -rf /var/lib/apt/lists/*
+RUN echo "deb http://ftp.jp.debian.org/debian/ jessie main contrib non-free"                > /etc/apt/sources.list
+RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie main contrib non-free"            >> /etc/apt/sources.list
+
+RUN echo "deb http://ftp.jp.debian.org/debian/ jessie-backports main contrib non-free"      >> /etc/apt/sources.list
+RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie-backports main contrib non-free"  >> /etc/apt/sources.list
+
+RUN echo "deb http://security.debian.org/ jessie/updates main contrib non-free"             >> /etc/apt/sources.list
+RUN echo "deb-src http://security.debian.org/ jessie/updates main contrib non-free"         >> /etc/apt/sources.list
+
+# jessie-updates, previously known as 'volatile'
+RUN echo "deb http://ftp.jp.debian.org/debian/ jessie-updates main contrib non-free"        >> /etc/apt/sources.list
+RUN echo "deb-src http://ftp.jp.debian.org/debian/ jessie-updates main contrib non-free"    >> /etc/apt/sources.list
+
+#Deb-Multimedia Repositoy
+RUN echo "deb http://www.deb-multimedia.org jessie main non-free"                           >> /etc/apt/sources.list
+RUN echo "deb-src http://www.deb-multimedia.org jessie main non-free"                       >> /etc/apt/sources.list
+
+
+RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor gcc libssl-dev make libreadline-dev
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
