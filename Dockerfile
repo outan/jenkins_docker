@@ -18,7 +18,7 @@ RUN echo "deb http://www.deb-multimedia.org jessie main non-free"               
 RUN echo "deb-src http://www.deb-multimedia.org jessie main non-free"                       >> /etc/apt/sources.list
 
 
-RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor gcc libssl-dev make libreadline-dev
+RUN apt-get update && apt-get install -y wget git curl zip openssh-server supervisor gcc libssl-dev make libreadline-dev sudo
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 RUN chmod a+r+w /var/run/sshd /var/log/supervisor
 
