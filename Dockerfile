@@ -28,6 +28,9 @@ RUN apt-get -y install vim
 RUN apt-get -y install tree
 RUN apt-get -y install silversearcher-ag
 RUN apt-get -y install unzip
+
+RUN echo "Asia/Tokyo" > /etc/timezone
+
 ENV JENKINS_HOME /var/jenkins_home
 
 # Jenkins is ran with user `jenkins`, uid = 1000
