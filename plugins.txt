@@ -2,3 +2,4 @@ rbenv
 git
 websocket
 parameterized-trigger
+delivery-pipeline-plugin
