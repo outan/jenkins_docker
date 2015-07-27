@@ -29,6 +29,13 @@ RUN apt-get -y install tree
 RUN apt-get -y install silversearcher-ag
 RUN apt-get -y install unzip
 
+RUN wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+ENV PATH $PATH:/usr/local/heroku/bin
+ONBUILD RUN echo "Host heroku.com"                        >  ~/.ssh/config
+ONBUILD RUN echo "    HostName heroku.com"                >> ~/.ssh/config
+ONBUILD RUN echo "    IdentityFile ~/.ssh/rsa_key" >> ~/.ssh/config
+ONBUILD RUN echo "    User git"                           >> ~/.ssh/config
+
 RUN echo "Asia/Tokyo" > /etc/timezone
 
 ENV JENKINS_HOME /var/jenkins_home
