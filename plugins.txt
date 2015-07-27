@@ -3,3 +3,5 @@ git
 websocket
 parameterized-trigger
 delivery-pipeline-plugin
+jquery
+token-macro
