@@ -1,3 +1,4 @@
 rbenv
 git
 websocket
+parameterized-trigger
