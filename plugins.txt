@@ -1,5 +1,7 @@
 rbenv
-git
+ruby-runtime
+git-client
+scm-api
 websocket
 parameterized-trigger
 delivery-pipeline-plugin
