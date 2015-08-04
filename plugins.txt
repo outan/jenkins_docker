@@ -7,3 +7,8 @@ parameterized-trigger
 delivery-pipeline-plugin
 jquery
 token-macro
+bitbucket
+github
+github-api
+multiple-scms
+
