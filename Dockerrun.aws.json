@@ -1,0 +1,19 @@
+{
+"AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "outan/jenkins",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/home/ec2-user",
+      "ContainerDirectory": "/var/jenkins_home"
+    }
+  ],
+  "Logging": "/var/log/"
+}
