@@ -78,7 +78,8 @@ EXPOSE 22
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-USER jenkins
+# Dockerrun.aws.jsonを利用して、elastic beanstalkにデプロイする時に、rootユーザーになり、コンテナを起動時にjenkins.shを実行すると、権限エラーが発生
+# USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
