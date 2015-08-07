@@ -27,7 +27,7 @@ RUN apt-get -y install libxml2 libxml2-dev libxslt-dev libsqlite3-dev g++ libpq-
 RUN apt-get -y install vim
 RUN apt-get -y install tree
 RUN apt-get -y install silversearcher-ag
-RUN apt-get -y install unzip
+RUN apt-get -y install unzip libnet-ifconfig-wrapper-perl
 
 RUN wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 ENV PATH $PATH:/usr/local/heroku/bin
