@@ -31,6 +31,11 @@ RUN apt-get -y install unzip
 
 RUN wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 ENV PATH $PATH:/usr/local/heroku/bin
+RUN echo "Host heroku.com"                        >  ~/.ssh/config
+RUN echo "    HostName heroku.com"                >> ~/.ssh/config
+RUN echo "    IdentityFile ~/.ssh/id_rsa.pub" >> ~/.ssh/config
+RUN echo "    User git"                           >> ~/.ssh/config
+
 RUN echo "Asia/Tokyo" > /etc/timezone
 
 ENV JENKINS_HOME /var/jenkins_home
